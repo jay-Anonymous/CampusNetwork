@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -15,7 +16,7 @@ import com.college.collegeconnect.activities.Navigation;
 
 public class Notification {
 
-    public static void displayNotification(Context mCtx, String title, String body) {
+    public static void displayNotification(@NonNull Context mCtx, String title, String body) {
 
         Intent intent = new Intent(mCtx, MainActivity.class);
         intent.putExtra("fragment", "attenfrag");

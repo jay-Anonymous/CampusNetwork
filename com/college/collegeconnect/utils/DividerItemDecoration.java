@@ -21,21 +21,21 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
 
-    private Drawable mDivider;
+    private final Drawable mDivider;
 
     private int mOrientation;
 
     private int padding = 0;
     private int avoidResourceId;
 
-    public DividerItemDecoration(Context context, int orientation) {
+    public DividerItemDecoration(@NonNull Context context, int orientation) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
         setOrientation(orientation);
     }
 
-    public DividerItemDecoration(Context context, int orientation, int padding, int avoidResourceId) {
+    public DividerItemDecoration(@NonNull Context context, int orientation, int padding, int avoidResourceId) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
@@ -60,7 +60,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    public void drawVertical(Canvas c, RecyclerView parent) {
+    public void drawVertical(Canvas c, @NonNull RecyclerView parent) {
         final int left = parent.getPaddingLeft() + padding;
         final int right = parent.getWidth() - parent.getPaddingRight() - padding;
         int width = 0;
@@ -81,7 +81,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    public void drawHorizontal(Canvas c, RecyclerView parent) {
+    public void drawHorizontal(Canvas c, @NonNull RecyclerView parent) {
         final int top = parent.getPaddingTop();
         final int bottom = parent.getHeight() - parent.getPaddingBottom();
 

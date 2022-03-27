@@ -37,14 +37,14 @@ class HomeRecyclerAdapter(val context: Context) : RecyclerView.Adapter<HomeRecyc
         mFirebaseRemoteConfig.fetchAndActivate().addOnCompleteListener {
             if (it.isSuccessful) {
                 val updated: Boolean = it.result
-                Log.d("Tools", "Config params updated: $updated");
+                Log.d("Tools", "Config params updated: $updated")
                 intent = if (mFirebaseRemoteConfig.getBoolean("timetable_activity"))
                     Intent(context, NewTimeTable::class.java)
                 else
                     Intent(context, TimeTable::class.java)
             }
             else {
-                Log.d("Tools", "Config params  not updated");
+                Log.d("Tools", "Config params  not updated")
             }
         }
 

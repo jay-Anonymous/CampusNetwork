@@ -2,7 +2,6 @@ package com.college.collegeconnect.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -27,14 +26,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajts.androidmads.library.SQLiteToExcel;
 import com.college.collegeconnect.R;
-import com.college.collegeconnect.settingsActivity.MyFilesActivity;
-import com.college.collegeconnect.settingsActivity.SettingsActivity;
-import com.college.collegeconnect.settingsActivity.WorkProfile;
 import com.college.collegeconnect.datamodels.SaveSharedPreference;
 import com.college.collegeconnect.settingsActivity.AboutActivity;
 import com.college.collegeconnect.settingsActivity.ContactActivity;
+import com.college.collegeconnect.settingsActivity.MyFilesActivity;
+import com.college.collegeconnect.settingsActivity.WorkProfile;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
@@ -48,17 +45,22 @@ import java.util.Objects;
 
 public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHolder> {
 
-    private ArrayList<String> options;
+    private final ArrayList<String> options;
     String selection;
     private final Context context;
     List act_list;
     int checked_item = 0;
     TextInputLayout placeholder;
     Button set;
+    @NonNull
     Class myfiles = MyFilesActivity.class;
+    @NonNull
     Class workprofile = WorkProfile.class;
+    @NonNull
     Class contactus = ContactActivity.class;
+    @NonNull
     Class about = AboutActivity.class;
+    @NonNull
     int[] images = {R.drawable.ic_addchart_24px, R.drawable.ic_uploadlist, R.drawable.ic_work_24px, R.drawable.ic_baseline_star_rate, R.drawable.ic_contactus, R.drawable.ic_about, R.drawable.ic_export};
 
     public SettingsAdapter(ArrayList<String> options, Context context) {
@@ -114,7 +116,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
                 Toast.makeText(context, "Processing!", Toast.LENGTH_SHORT).show();
             }
             @Override
-            public void onCompleted(String filePath) {
+            public void onCompleted(@NonNull String filePath) {
                 Uri uri = FileProvider.getUriForFile(context,  context.getPackageName() + ".provider", new File(filePath));
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setDataAndType(uri, "application/vnd.ms-excel");
@@ -159,7 +161,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
     }
 
     private void dialog() {
-        final String theme[] = context.getResources().getStringArray(R.array.themes);
+        final String[] theme = context.getResources().getStringArray(R.array.themes);
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
         builder.setTitle("Select Theme");
         builder.setSingleChoiceItems(R.array.themes, SaveSharedPreference.getCheckedItem(context), (dialog, which) -> {

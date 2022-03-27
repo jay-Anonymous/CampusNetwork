@@ -17,7 +17,7 @@ class EventRepository(val query: Query) : LiveData<ArrayList<Events>>() {
         override fun onDataChange(snapshot: DataSnapshot) {
             list.clear()
             for (event in snapshot.children) {
-                val events = event.getValue(Events::class.java);
+                val events = event.getValue(Events::class.java)
                 if (events != null) {
                     Log.d("BvestActivity", "onDataChange: ${events.eventName}")
                     list.add(events)

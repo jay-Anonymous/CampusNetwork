@@ -1,14 +1,5 @@
 package com.college.collegeconnect.ui.event;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -30,6 +21,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.adapters.ImageCreateAdapter;
@@ -62,7 +62,9 @@ public class CreateEvent extends AppCompatActivity {
     public String imageUrl;
     ViewPager viewPagerImage;
     TabLayout viewPagerIndicator;
+    @NonNull
     ArrayList<Uri> images = new ArrayList<>();
+    @NonNull
     ArrayList<String> imageurl = new ArrayList<>();
     ProgressBar progressBar;
     ValueEventListener listener;
@@ -105,7 +107,7 @@ public class CreateEvent extends AppCompatActivity {
 
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(@NonNull View v) {
                 imageadd();
                 v.bringToFront();
             }
@@ -396,11 +398,11 @@ public class CreateEvent extends AppCompatActivity {
                 final StorageReference timeTableref = unique.child(name.getText().toString() + "/Poster" + i + ".jpeg");
                 timeTableref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
 
                         Task<Uri> downlaoduri = taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
-                            public void onSuccess(Uri uri) {
+                            public void onSuccess(@NonNull Uri uri) {
                                 CreateEvent.this.imageUrl = uri.toString();
 
 

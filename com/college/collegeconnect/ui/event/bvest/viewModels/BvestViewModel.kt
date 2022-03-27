@@ -13,7 +13,6 @@ import com.college.collegeconnect.ui.event.bvest.repository.EventRepository
 import com.college.collegeconnect.ui.event.bvest.repository.SocietiesRepository
 import com.college.collegeconnect.utils.FirebaseUtil
 import com.google.firebase.database.*
-import io.reactivex.Completable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers

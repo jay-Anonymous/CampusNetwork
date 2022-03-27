@@ -15,7 +15,7 @@ class SocietiesRepository(val query: Query) : LiveData<ArrayList<Society>>() {
         override fun onDataChange(snapshot: DataSnapshot) {
             list.clear()
             for (society in snapshot.children) {
-                val societies = society.getValue(Society::class.java);
+                val societies = society.getValue(Society::class.java)
                 if (societies != null) {
                     Log.d("BvestActivity", "onDataChange: ${societies.name}")
                     list.add(societies)

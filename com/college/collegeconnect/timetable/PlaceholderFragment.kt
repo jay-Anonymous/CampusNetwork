@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.college.collegeconnect.R
 import com.college.collegeconnect.adapters.TimetableAdapter
 import com.college.collegeconnect.database.TimeTableDatabase
-import com.college.collegeconnect.database.entity.*
-import java.util.ArrayList
+import com.college.collegeconnect.database.entity.TimetableEntity
 
 /**
  * A placeholder fragment containing a simple view.
@@ -65,7 +64,4 @@ class PlaceholderFragment(private val position: Int, private var newTimeTableVie
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 }

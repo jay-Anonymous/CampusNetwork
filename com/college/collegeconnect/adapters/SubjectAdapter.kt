@@ -148,8 +148,8 @@ class SubjectAdapter(private val subjects: ArrayList<SubjectDetails>, private va
                             notifyDataSetChanged()
                             dialog.dismiss()
                         }
-                        Objects.requireNonNull(dialog.window)?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
-                        Objects.requireNonNull(dialog.window)?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        Objects.requireNonNull(dialog.window).clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
+                        Objects.requireNonNull(dialog.window).setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         dialog.show()
                     }
                 }

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
@@ -17,10 +16,8 @@ import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.college.collegeconnect.R
 import com.college.collegeconnect.datamodels.Events
-import com.college.collegeconnect.ui.event.bvest.BvestActivity
 import com.college.collegeconnect.ui.event.bvest.BvestEventActivity
 import com.college.collegeconnect.utils.ImageHandler
-import com.college.collegeconnect.utils.toast
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target

@@ -17,7 +17,7 @@ class UploadsRepository(val query: Query) : LiveData<ArrayList<Upload>>() {
         override fun onDataChange(snapshot: DataSnapshot) {
             list.clear()
             for (upload in snapshot.children) {
-                val uploads = upload.getValue(Upload::class.java);
+                val uploads = upload.getValue(Upload::class.java)
                 if (uploads != null) {
                     if (uploads.getUploaderMail() == FirebaseAuth.getInstance().currentUser?.email)
                         list.add(uploads)

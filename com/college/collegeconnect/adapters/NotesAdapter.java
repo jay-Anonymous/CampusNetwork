@@ -27,22 +27,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.collegeconnect.BuildConfig;
+import com.college.collegeconnect.R;
 import com.college.collegeconnect.activities.PdfViewerActivity;
 import com.college.collegeconnect.database.entity.DownloadEntity;
 import com.college.collegeconnect.datamodels.Constants;
-import com.college.collegeconnect.R;
-import com.college.collegeconnect.datamodels.SaveSharedPreference;
 import com.college.collegeconnect.datamodels.NotesReports;
+import com.college.collegeconnect.datamodels.SaveSharedPreference;
 import com.college.collegeconnect.datamodels.Upload;
-import com.college.collegeconnect.viewmodels.DownloadNotesViewModel;
 import com.college.collegeconnect.utils.FirebaseUtil;
+import com.college.collegeconnect.viewmodels.DownloadNotesViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -54,14 +54,17 @@ import java.util.ArrayList;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> implements Filterable {
 
     private final Context context;
+    @NonNull
     private final ArrayList<Upload> noteslist;
+    @NonNull
     private final ArrayList<Upload> noteslistfull;
     private EditText answer;
+    @Nullable
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DownloadNotesViewModel downloadNotesViewModel;
     String name;
 
-    public NotesAdapter(Context context, ArrayList<Upload> noteslist, DownloadNotesViewModel downloadNotesViewModel) {
+    public NotesAdapter(Context context, @NonNull ArrayList<Upload> noteslist, DownloadNotesViewModel downloadNotesViewModel) {
         this.context = context;
         this.noteslist = noteslist;
         this.downloadNotesViewModel = downloadNotesViewModel;
@@ -135,7 +138,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 inflater.inflate(R.menu.notes_overflow, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
+                    public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.report: {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -195,7 +198,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
                                 etu.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {
+                                    public void onClick(@NonNull View v) {
 
                                         etuB[0] = !etuB[0];
                                         if (!etuB[0] && !finalSelectedTags1.contains("Easy to understand")) {
@@ -207,7 +210,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                                 });
                                 shortt.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {
+                                    public void onClick(@NonNull View v) {
                                         shortB[0] = !shortB[0];
                                         if (!shortB[0] && !finalSelectedTags2.contains("Short")) {
                                             finalSelectedTags2.add("Short");
@@ -217,7 +220,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                                 });
                                 longt.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {
+                                    public void onClick(@NonNull View v) {
                                         longB[0] = !longB[0];
                                         if (!longB[0] && !finalSelectedTags3.contains("Long")) {
                                             finalSelectedTags3.add("Long");
@@ -227,7 +230,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                                 });
                                 ttp.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) {
+                                    public void onClick(@NonNull View v) {
                                         ttpB[0] = !ttpB[0];
                                         if (!ttpB[0] && !finalSelectedTags4.contains("To the point")) {
                                             finalSelectedTags4.add("To the point");
@@ -280,7 +283,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     }
 
-    public void downloadfile(Upload notes) {
+    public void downloadfile(@NonNull Upload notes) {
         String url = notes.getUrl();
         String name = notes.getName();
         final DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -369,14 +372,17 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         }
     }
 
+    @NonNull
     @Override
     public Filter getFilter() {
         return notesfilter;
     }
 
-    private Filter notesfilter = new Filter() {
+    @NonNull
+    private final Filter notesfilter = new Filter() {
+        @NonNull
         @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
+        protected FilterResults performFiltering(@Nullable CharSequence constraint) {
             ArrayList<Upload> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(noteslistfull);
@@ -394,7 +400,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         }
 
         @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
+        protected void publishResults(CharSequence constraint, @NonNull FilterResults results) {
             noteslist.clear();
             noteslist.addAll((ArrayList) results.values);
             notifyDataSetChanged();

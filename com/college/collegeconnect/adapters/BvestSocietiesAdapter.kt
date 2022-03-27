@@ -4,15 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.college.collegeconnect.R
 import com.college.collegeconnect.datamodels.Society
-import com.college.collegeconnect.utils.toast
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import java.util.*
 
 class BvestSocietiesAdapter(val context: Context, val arrayList: ArrayList<Society>) : RecyclerView.Adapter<BvestSocietiesAdapter.ViewHolder>() {
 

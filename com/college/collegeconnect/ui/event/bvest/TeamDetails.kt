@@ -1,9 +1,8 @@
 package com.college.collegeconnect.ui.event.bvest
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.college.collegeconnect.R
-import kotlinx.android.synthetic.main.activity_team_details.*
 
 class TeamDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

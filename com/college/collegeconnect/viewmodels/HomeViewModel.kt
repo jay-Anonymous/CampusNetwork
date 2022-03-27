@@ -2,7 +2,9 @@ package com.college.collegeconnect.viewmodels
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.college.collegeconnect.database.AttendanceDatabase
 import com.college.collegeconnect.database.TimeTableDatabase
 import com.college.collegeconnect.database.entity.TimetableEntity

@@ -22,7 +22,7 @@ class DownloadRepository(val query: Query, val bundle: Bundle) : LiveData<ArrayL
         override fun onDataChange(snapshot: DataSnapshot) {
             uploadList.clear()
             for (uploads in snapshot.children) {
-                val upload = uploads.getValue(Upload::class.java);
+                val upload = uploads.getValue(Upload::class.java)
                 if (upload != null) {
                     if (upload.getCourse() == receivedCourse) {
                         if (upload.getBranch() == receivedBranch) {

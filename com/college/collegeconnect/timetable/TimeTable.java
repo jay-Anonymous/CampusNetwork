@@ -1,12 +1,5 @@
 package com.college.collegeconnect.timetable;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,11 +12,18 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.datamodels.DatabaseHelper;
@@ -46,8 +46,10 @@ public class TimeTable extends AppCompatActivity {
     DatabaseHelper db;
     private TouchImageView imageView;
     private ProgressBar progressBar;
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    @NonNull
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    @NonNull
+    private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
     private StorageReference storageRef;
     private int dot;
@@ -174,7 +176,7 @@ public class TimeTable extends AppCompatActivity {
             final StorageReference timeTableref = unique.child("TimeTable/timetable.jpeg");
             timeTableref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(TimeTable.this, "TimeTable updated!", Toast.LENGTH_SHORT).show();
                     taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -215,19 +217,20 @@ public class TimeTable extends AppCompatActivity {
         }
     }
 
-    public static byte[] getBytes(Bitmap bitmap) {
+    @NonNull
+    public static byte[] getBytes(@NonNull Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         return stream.toByteArray();
     }
 
     // convert from byte array to bitmap
-    public static Bitmap getImage(byte[] image) {
+    public static Bitmap getImage(@NonNull byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Detects request codes

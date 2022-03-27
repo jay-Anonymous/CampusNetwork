@@ -3,11 +3,6 @@ package com.college.collegeconnect.ui.event;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.adapters.ImageAdapter;
 import com.college.collegeconnect.datamodels.Constants;
@@ -28,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,14 +41,16 @@ import java.util.Map;
 
 public class EventDetailsFragment extends Fragment {
     private DatabaseReference databaseReference;
-    private FirebaseDatabase firebaseDatabase = FirebaseUtil.getDatabase();
+    private final FirebaseDatabase firebaseDatabase = FirebaseUtil.getDatabase();
     private TextView eventName, startingDate, endingDate;
     private TextView description;
     private Button register, calendar;
+    @Nullable
     String registrationurl;
     private FloatingActionButton floatingActionButton;
     private ViewPager imagesViewpager;
     private TabLayout viewpagerIndicator;
+    @Nullable
     private ArrayList<String> eventImages = new ArrayList<>();
     private Context mContext;
     ValueEventListener listener, listener2;
@@ -64,7 +69,7 @@ public class EventDetailsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event, container, false);
@@ -137,7 +142,7 @@ public class EventDetailsFragment extends Fragment {
 
     }
 
-    private Long getMilli(String mDate) {
+    private Long getMilli(@NonNull String mDate) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd MMM yy", Locale.getDefault());
         Date time = null;
         try {
@@ -189,7 +194,8 @@ public class EventDetailsFragment extends Fragment {
         });
     }
 
-    public String date(String date) {
+    @Nullable
+    public String date(@NonNull String date) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat outputFormat = new SimpleDateFormat("EEE, dd MMM yy");
         Date datetext = null;

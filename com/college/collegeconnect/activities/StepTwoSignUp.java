@@ -41,9 +41,10 @@ public class StepTwoSignUp extends AppCompatActivity {
     public static final String EXTRA_EMAIL = "email";
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_PREV = "previous";
-    private static String TAG = "Step Two Sign Up";
+    @NonNull
+    private static final String TAG = "Step Two Sign Up";
     private DatabaseReference databaseReference;
-    private FirebaseDatabase firebaseDatabase = FirebaseUtil.getDatabase();
+    private final FirebaseDatabase firebaseDatabase = FirebaseUtil.getDatabase();
     private TextInputLayout rollno, branchanme, collegeName, yearText;
     private FirebaseAuth mAuth;
     private Button signup;

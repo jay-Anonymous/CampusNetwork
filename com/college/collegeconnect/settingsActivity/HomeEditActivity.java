@@ -1,12 +1,5 @@
 package com.college.collegeconnect.settingsActivity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -27,14 +20,23 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.college.collegeconnect.BuildConfig;
 import com.college.collegeconnect.R;
+import com.college.collegeconnect.activities.Navigation;
 import com.college.collegeconnect.customviews.DoneListener;
 import com.college.collegeconnect.customviews.EditTextWithEditButton;
 import com.college.collegeconnect.datamodels.SaveSharedPreference;
 import com.college.collegeconnect.datamodels.User;
-import com.college.collegeconnect.activities.Navigation;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,11 +54,13 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeEditActivity extends AppCompatActivity implements DoneListener {
@@ -154,7 +158,7 @@ public class HomeEditActivity extends AppCompatActivity implements DoneListener 
         User.addUser(enroll, firebaseAuth.getCurrentUser().getEmail(), name, branch, strCollege, strYear);
     }
 
-    public void setDoneListener(EditTextWithEditButton... editTexts) {
+    public void setDoneListener(@NonNull EditTextWithEditButton... editTexts) {
         for (EditTextWithEditButton editText : editTexts) {
             editText.setDoneListener(this);
         }
@@ -189,7 +193,7 @@ public class HomeEditActivity extends AppCompatActivity implements DoneListener 
         registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
     }
 
-    private void copyFile(String inputPath, String inputFile, String outputPath) {
+    private void copyFile(String inputPath, String inputFile, @NonNull String outputPath) {
 
         InputStream in = null;
         OutputStream out = null;
@@ -290,7 +294,7 @@ public class HomeEditActivity extends AppCompatActivity implements DoneListener 
                             .height(150)
                             .bold()
                             .endConfig()
-                            .buildRound(name.substring(0, 1) + name.substring(space + 1, space + 2), color);
+                            .buildRound(name.charAt(0) + name.charAt(space + 1), color);
                     prfileImage.setImageDrawable(drawable);
                 } catch (Exception e) {
 
@@ -335,7 +339,7 @@ public class HomeEditActivity extends AppCompatActivity implements DoneListener 
     }
 
     //Upload dp to Firebase Storage
-    private void uploadImage(Uri resultUri) {
+    private void uploadImage(@Nullable Uri resultUri) {
         if (resultUri != null) {
 
             StorageReference unique = storageRef.child("User/");

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<String> tags;
+    private final Context context;
+    private final ArrayList<String> tags;
 
     public TagsAdapter(Context context, ArrayList<String> tags) {
         this.context = context;
@@ -40,15 +40,15 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
             holder.textView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF6A6A")));
             holder.textView.setBackgroundResource(R.drawable.button_design);
         }
-        if (tag.toLowerCase().equals("easy to understand")) {
+        if (tag.equalsIgnoreCase("easy to understand")) {
             holder.textView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6FFF6F")));
             holder.textView.setBackgroundResource(R.drawable.button_design);
         }
-        if (tag.toLowerCase().equals("short")) {
+        if (tag.equalsIgnoreCase("short")) {
             holder.textView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FBFF61")));
             holder.textView.setBackgroundResource(R.drawable.button_design);
         }
-        if (tag.toLowerCase().equals("to the point")) {
+        if (tag.equalsIgnoreCase("to the point")) {
             holder.textView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6AFFEC")));
             holder.textView.setBackgroundResource(R.drawable.button_design);
         }

@@ -1,18 +1,17 @@
 package com.college.collegeconnect.settingsActivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.college.collegeconnect.R;
 
@@ -22,7 +21,8 @@ import java.io.InputStreamReader;
 
 public class AboutActivity extends AppCompatActivity {
 
-    private StringBuilder text = new StringBuilder();
+    @NonNull
+    private final StringBuilder text = new StringBuilder();
     ImageView imageView;
 
     @Override

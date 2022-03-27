@@ -15,19 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.datamodels.Events;
+import com.college.collegeconnect.ui.event.EventDetailsFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import com.college.collegeconnect.ui.event.EventDetailsFragment;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<Events> eventsArrayList;
+    private final Context context;
+    private final ArrayList<Events> eventsArrayList;
 
     public EventsAdapter(Context context, ArrayList<Events> eventsArrayList) {
         this.context = context;
@@ -69,7 +67,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.organiser.setText("By " + event.getOrganizer());
         holder.itv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(@NonNull View v) {
                 Bundle arguments = new Bundle();
                 arguments.putString("Name", event.getEventName());
 

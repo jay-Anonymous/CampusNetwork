@@ -3,6 +3,7 @@ package com.college.collegeconnect.datamodels;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -14,32 +15,42 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class User {
 
+    @Nullable
     public String rollno;
+    @Nullable
     public String email;
+    @Nullable
     public String name;
+    @Nullable
     public String year;
+    @Nullable
     public String branch;
     public String college;
     public static FirebaseFirestore firebaseFirestore;
     public static FirebaseDatabase firebaseDatabase;
     public static FirebaseAuth auth;
 
+    @Nullable
     public String getYear() {
         return year;
     }
 
+    @Nullable
     public String getRollno() {
         return rollno;
     }
 
+    @Nullable
     public String getEmail() {
         return email;
     }
 
+    @Nullable
     public String getName() {
         return name;
     }
 
+    @Nullable
     public String getBranch() {
         return branch;
     }

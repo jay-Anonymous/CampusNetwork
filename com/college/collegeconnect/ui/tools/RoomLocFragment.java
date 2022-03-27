@@ -23,11 +23,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 
 import com.college.collegeconnect.R;
 import com.google.android.gms.ads.AdRequest;
@@ -36,7 +35,6 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.net.URISyntaxException;
 
@@ -139,7 +137,7 @@ public class RoomLocFragment extends Fragment {
                 }
 
                 @Override
-                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                public boolean shouldOverrideUrlLoading(WebView view, @NonNull WebResourceRequest request) {
                     Uri uri = request.getUrl();
                     if (uri.toString().startsWith("intent://")) {
                         Intent intent = null;
@@ -169,7 +167,7 @@ public class RoomLocFragment extends Fragment {
             webView.canGoBack();
             webView.setOnKeyListener(new View.OnKeyListener() {
 
-                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                public boolean onKey(View v, int keyCode, @NonNull KeyEvent event) {
                     if (keyCode == KeyEvent.KEYCODE_BACK
                             && event.getAction() == MotionEvent.ACTION_UP
                             && webView.canGoBack()) {

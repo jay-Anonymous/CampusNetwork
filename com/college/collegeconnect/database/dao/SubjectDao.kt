@@ -1,7 +1,10 @@
 package com.college.collegeconnect.database.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import com.college.collegeconnect.database.entity.SubjectDetails
 
 @Dao

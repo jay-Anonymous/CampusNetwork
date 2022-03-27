@@ -166,7 +166,7 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    public static boolean isEmailValid(String email) {
+    public static boolean isEmailValid(@NonNull String email) {
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);

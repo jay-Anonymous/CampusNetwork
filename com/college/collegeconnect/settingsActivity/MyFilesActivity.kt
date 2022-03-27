@@ -45,7 +45,7 @@ class   MyFilesActivity : AppCompatActivity() {
         DownloadDatabase(application).getDownloadsDao().getDownloadFiles().observe(this, {
             recyclerViewDownloads.layoutManager = LinearLayoutManager(this)
             adapterDownload = MyDownloadedFilesAdapter(this, it, myFilesViewModel)
-            Log.d(localClassName, "onCreate: ${it.toString()}")
+            Log.d(localClassName, "onCreate: $it")
             recyclerViewDownloads.adapter = adapterDownload
             if (it.isNullOrEmpty())
                 txt_no_downloads.visibility = View.VISIBLE

@@ -2,7 +2,9 @@ package com.college.collegeconnect.viewmodels
 
 import android.app.Application
 import android.widget.Toast
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.college.collegeconnect.database.AttendanceDatabase
 import com.college.collegeconnect.database.entity.SubjectDetails
 import kotlinx.coroutines.launch

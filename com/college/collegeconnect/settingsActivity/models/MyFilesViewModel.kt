@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.college.collegeconnect.database.DownloadDatabase
-import com.college.collegeconnect.database.entity.DownloadEntity
 import com.college.collegeconnect.datamodels.Constants
 import com.college.collegeconnect.datamodels.Upload
 import com.college.collegeconnect.settingsActivity.repository.UploadsRepository

@@ -1,14 +1,5 @@
 package com.college.collegeconnect.settingsActivity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -19,14 +10,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.college.collegeconnect.activities.OnBoardingScreen;
-import com.college.collegeconnect.datamodels.DatabaseHelper;
-import com.college.collegeconnect.utils.DividerItemDecoration;
 import com.college.collegeconnect.R;
-import com.college.collegeconnect.adapters.SettingsAdapter;
-import com.college.collegeconnect.datamodels.SaveSharedPreference;
 import com.college.collegeconnect.activities.Navigation;
+import com.college.collegeconnect.activities.OnBoardingScreen;
+import com.college.collegeconnect.adapters.SettingsAdapter;
+import com.college.collegeconnect.datamodels.DatabaseHelper;
+import com.college.collegeconnect.datamodels.SaveSharedPreference;
+import com.college.collegeconnect.utils.DividerItemDecoration;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -34,8 +36,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -80,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
                         .height(150)
                         .bold()
                         .endConfig()
-                        .buildRound(name.substring(0, 1) + name.substring(space + 1, space + 2), color);
+                        .buildRound(name.charAt(0) + name.charAt(space + 1), color);
                 prfileImage.setImageDrawable(drawable);
             } catch (Exception e) {
 
@@ -156,7 +160,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Setting Negative "NO" Btn
         builder.setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(@NonNull DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });

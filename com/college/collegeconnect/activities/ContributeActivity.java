@@ -36,20 +36,14 @@ public class ContributeActivity extends AppCompatActivity {
         yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    no.setEnabled(false);
-                else
-                    no.setEnabled(true);
+                no.setEnabled(!isChecked);
             }
         });
 
         no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    yes.setEnabled(false);
-                else
-                    yes.setEnabled(true);
+                yes.setEnabled(!isChecked);
             }
         });
 

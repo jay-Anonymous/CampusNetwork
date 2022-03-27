@@ -1,6 +1,11 @@
 package com.college.collegeconnect.ui.event;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,12 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.adapters.EventsAdapter;
@@ -42,7 +41,9 @@ public class EventsFragment extends Fragment {
     FirebaseDatabase firebaseDatabase = FirebaseUtil.getDatabase();
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
+    @Nullable
     static EventsAdapter eventsAdapter;
+    @NonNull
     ArrayList<Events> eventsList = new ArrayList<>();
     TextView textView, tv;
     ValueEventListener listener;

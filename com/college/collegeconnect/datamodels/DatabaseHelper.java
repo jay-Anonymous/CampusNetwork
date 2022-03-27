@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -25,13 +26,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(@NonNull SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + Table_name + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ATTENDED INTEGER, MISSED INTEGER)");
         sqLiteDatabase.execSQL("create table " + Tablename + " (IMAGETEXT TEXT PRIMARY KEY, IMAGEBLOB BLOB)");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(@NonNull SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Table_name);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Tablename);
         onCreate(sqLiteDatabase);
@@ -44,9 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Col3, attended);
         contentValues.put(Col4, missed);
         long result = db.insert(Table_name, null, contentValues);
-        if (result == -1)
-            return false;
-        return true;
+        return result != -1;
     }
 
     public boolean insertImage(byte[] image) {
@@ -114,6 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.query(Table_name, new String[]{Col3, Col4}, null, null, null, null, null);
     }
 
+    @NonNull
     public String calculateTotal() {
         Cursor res = getTotal();
         int totalAttended = 0, totalMissed = 0;

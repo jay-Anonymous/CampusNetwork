@@ -22,16 +22,15 @@ import com.college.collegeconnect.R
 import com.college.collegeconnect.adapters.HomeRecyclerAdapter
 import com.college.collegeconnect.databinding.FragmentHomeBinding
 import com.college.collegeconnect.datamodels.SaveSharedPreference
-import com.college.collegeconnect.viewmodels.HomeViewModel
 import com.college.collegeconnect.settingsActivity.SettingsActivity
 import com.college.collegeconnect.utils.ImageHandler
+import com.college.collegeconnect.viewmodels.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.sample.viewbinding.fragment.viewBinding
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.*
 import java.text.SimpleDateFormat

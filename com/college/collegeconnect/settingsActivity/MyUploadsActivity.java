@@ -1,14 +1,5 @@
 package com.college.collegeconnect.settingsActivity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +9,18 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.adapters.UploadlistAdapter;
 import com.college.collegeconnect.datamodels.Upload;
@@ -26,6 +29,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +74,7 @@ public class MyUploadsActivity extends AppCompatActivity {
         swipeRefreshLayout.setRefreshing(true);
         model.getList().observe(this, new Observer<List<Upload>>() {
             @Override
-            public void onChanged(List<Upload> uploads) {
+            public void onChanged(@NonNull List<Upload> uploads) {
                 if (uploads.isEmpty()){
                     Snackbar.make(findViewById(R.id.recycle), "You have not uploaded anything!", Snackbar.LENGTH_LONG).show();
                 }
@@ -119,7 +123,7 @@ public class MyUploadsActivity extends AppCompatActivity {
 //    }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_view, menu);
         MenuItem searchItem = menu.findItem(R.id.search_action);

@@ -1,17 +1,15 @@
 package com.college.collegeconnect.timetable
 
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.app.PendingIntent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.media.RingtoneManager
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.college.collegeconnect.R
-import com.college.collegeconnect.activities.MainActivity
 import com.college.collegeconnect.activities.Navigation
 
 

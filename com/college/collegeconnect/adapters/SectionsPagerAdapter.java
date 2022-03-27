@@ -1,5 +1,6 @@
 package com.college.collegeconnect.adapters;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,10 +17,10 @@ import org.jetbrains.annotations.NotNull;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private NewTimeTableViewModel newTimeTableViewModel;
+    private final NewTimeTableViewModel newTimeTableViewModel;
     public static final String[] TAB_TITLES = {"Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"};
 
-    public SectionsPagerAdapter(FragmentManager fm, NewTimeTableViewModel newTimeTableViewModel) {
+    public SectionsPagerAdapter(@NonNull FragmentManager fm, NewTimeTableViewModel newTimeTableViewModel) {
         super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.newTimeTableViewModel = newTimeTableViewModel;
     }

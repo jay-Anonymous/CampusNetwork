@@ -24,7 +24,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputLayout
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import kotlinx.android.synthetic.main.fragment_attendance.*
-import java.util.*
 
 class AttendanceFragment : Fragment() {
     lateinit var bottomNavigationView: BottomNavigationView

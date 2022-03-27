@@ -25,15 +25,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.college.collegeconnect.BuildConfig;
+import com.college.collegeconnect.R;
 import com.college.collegeconnect.activities.PdfViewerActivity;
 import com.college.collegeconnect.datamodels.Constants;
-import com.college.collegeconnect.R;
 import com.college.collegeconnect.datamodels.Upload;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,12 +49,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.ViewHolder> implements Filterable {
-    private Context context;
+    private final Context context;
     private com.google.firebase.database.DatabaseReference DatabaseReference;
-    private ArrayList<Upload> noteslist;
-    private ArrayList<Upload> noteslistfull;
+    private final ArrayList<Upload> noteslist;
+    private final ArrayList<Upload> noteslistfull;
 
-    public UploadlistAdapter(Context context, ArrayList<Upload> noteslist) {
+    public UploadlistAdapter(Context context, @NonNull ArrayList<Upload> noteslist) {
         this.context = context;
         this.noteslist = noteslist;
         noteslistfull = new ArrayList<>(noteslist);
@@ -76,7 +76,7 @@ public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.Vi
         final Upload notes = noteslist.get(position);
         holder.title.setText(notes.getName());
         holder.author.setText(notes.getAuthor());
-        holder.noOfDown.setText("No. of Downloads: " + String.valueOf(notes.getDownload()));
+        holder.noOfDown.setText("No. of Downloads: " + notes.getDownload());
 
         ArrayList<String> selectedTags = new ArrayList<>();
         if (notes.getTags() != null)
@@ -110,7 +110,7 @@ public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.Vi
                 inflater.inflate(R.menu.notes_overflow, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
+                    public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.deletenotes:
                                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
@@ -153,7 +153,7 @@ public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.Vi
                                 // Setting Negative "NO" Btn
                                 builder.setNegativeButton("Cancel",
                                         new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
+                                            public void onClick(@NonNull DialogInterface dialog, int which) {
                                                 dialog.cancel();
                                             }
                                         });
@@ -191,7 +191,7 @@ public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.Vi
     }
 
     public void downloadfile(String url, String name) {
-        final DownloadManager downloadManager = (DownloadManager) context.getSystemService(context.DOWNLOAD_SERVICE);
+        final DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(url);
         DownloadManager.Request request = new DownloadManager.Request(uri);
         request.setMimeType("application/pdf");
@@ -260,14 +260,17 @@ public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.Vi
         }
     }
 
+    @NonNull
     @Override
     public Filter getFilter() {
         return notesfilter;
     }
 
-    private Filter notesfilter = new Filter() {
+    @NonNull
+    private final Filter notesfilter = new Filter() {
+        @NonNull
         @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
+        protected FilterResults performFiltering(@Nullable CharSequence constraint) {
             ArrayList<Upload> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(noteslistfull);
@@ -285,7 +288,7 @@ public class UploadlistAdapter extends RecyclerView.Adapter<UploadlistAdapter.Vi
         }
 
         @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
+        protected void publishResults(CharSequence constraint, @NonNull FilterResults results) {
             noteslist.clear();
             noteslist.addAll((ArrayList) results.values);
             notifyDataSetChanged();

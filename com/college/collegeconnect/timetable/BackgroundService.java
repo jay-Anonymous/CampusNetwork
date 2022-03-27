@@ -1,7 +1,9 @@
 package com.college.collegeconnect.timetable;
 
 import android.annotation.SuppressLint;
-
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -10,17 +12,14 @@ import android.media.RingtoneManager;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.util.Log;
-import android.app.Service;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.activities.Navigation;
-
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 
 public class BackgroundService extends Service {
 
@@ -43,7 +42,8 @@ public class BackgroundService extends Service {
         this.backgroundThread = new Thread(myTask);
     }
 
-    private Runnable myTask = new Runnable() {
+    @NonNull
+    private final Runnable myTask = new Runnable() {
         @Override
         public void run() {
             Log.d(TAG, "THE BACKGROUND SERVICE IS RUNNING");
@@ -55,7 +55,7 @@ public class BackgroundService extends Service {
     };
 
     @SuppressLint("ServiceCast")
-    private void showNotification(Context context) {
+    private void showNotification(@NonNull Context context) {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, Navigation.CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_stat_call_white)

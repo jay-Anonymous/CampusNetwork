@@ -11,11 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.datamodels.SaveSharedPreference;
 import com.college.collegeconnect.settingsActivity.SettingsActivity;
@@ -32,21 +35,30 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Random;
 
 public class Navigation extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private static final int MY_REQUEST_CODE = 10;
     static int color;
+    @NonNull
     Fragment homefrag = new HomeFragment();
+    @NonNull
     Fragment attenfrag = new AttendanceFragment();
+    @NonNull
     Fragment notefrag = new NotesFragment();
+    @NonNull
     Fragment toolsfrag = new ToolsFragment();
+    @NonNull
     public static String CHANNEL_ID = "Notification";
-    private static String CHANNEL_NAME = "Notification Channel";
-    private static String CHANNEL_DESC = "app notification";
+    @NonNull
+    private static final String CHANNEL_NAME = "Notification Channel";
+    @NonNull
+    private static final String CHANNEL_DESC = "app notification";
     AlertDialog.Builder builder;
     public static Activity act;
+    @NonNull
     public Boolean visible = false;
 
 
@@ -222,7 +234,7 @@ public class Navigation extends AppCompatActivity implements BottomNavigationVie
             super.onBackPressed();
     }
 
-    private boolean loadFragments(Fragment fragment) {
+    private boolean loadFragments(@Nullable Fragment fragment) {
         if (fragment != null) {
             Log.d("navigation", "loadFragments: Frag is loaded");
             getSupportFragmentManager()

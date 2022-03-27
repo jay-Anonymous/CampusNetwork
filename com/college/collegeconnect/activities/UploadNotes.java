@@ -1,14 +1,5 @@
 package com.college.collegeconnect.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +19,16 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.college.collegeconnect.R;
 import com.college.collegeconnect.datamodels.Constants;
@@ -50,6 +51,7 @@ import java.util.Objects;
 public class UploadNotes extends AppCompatActivity {
 
     final static int PICK_PDF_CODE = 2342;
+    @Nullable
     private Intent Data = null;
     private TextInputLayout fileName, author;
     private Button upload;
@@ -203,7 +205,7 @@ public class UploadNotes extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //when the user choses the file
         if (requestCode == PICK_PDF_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
@@ -326,7 +328,7 @@ public class UploadNotes extends AppCompatActivity {
 
 
     //this method is uploading the file
-    private void uploadFile(Uri data, final String filename, final String authorname) {
+    private void uploadFile(@NonNull Uri data, final String filename, final String authorname) {
 
         progressBar.setVisibility(View.VISIBLE);
         StorageReference sRef = mStorageReference.child(Constants.STORAGE_PATH_UPLOADS + course.getSelectedItem().toString() + "/" + branch.getSelectedItem().toString() + "/" + semester.getSelectedItem().toString() + "/" + unit.getSelectedItem().toString() + "/" + System.currentTimeMillis());
@@ -334,14 +336,14 @@ public class UploadNotes extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onSuccess(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         progressBar.setVisibility(View.GONE);
 //                        final Uri downloadi;
                         textViewStatus.setText("File Uploaded Successfully");
                         Task<Uri> downlaoduri = taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
-                            public void onSuccess(Uri uri) {
+                            public void onSuccess(@NonNull Uri uri) {
                                 Upload upload = new Upload(filename,
                                         course.getSelectedItem().toString(),
                                         semester.getSelectedItem().toString(),
@@ -368,7 +370,7 @@ public class UploadNotes extends AppCompatActivity {
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         progressBar.setProgress(0);
@@ -400,7 +402,7 @@ public class UploadNotes extends AppCompatActivity {
                 if (receivedType.contains("pdf")) {
                     recievedUri = receivedIntent.getParcelableExtra(Intent.EXTRA_STREAM);
                     if (recievedUri != null) {
-                        Log.i("Upload Notes", "onSharedIntent: " + recievedUri.toString());
+                        Log.i("Upload Notes", "onSharedIntent: " + recievedUri);
                         textViewStatus.setText("File Selected!");
                         return true;
                     }
